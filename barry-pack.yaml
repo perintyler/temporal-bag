@@ -1,0 +1,53 @@
+manifestVersion: 1
+name: temporal
+description: Temporal workflow orchestration — lifecycle, schedules, task queues, cloud management
+
+instructions: |
+  Use temporal MCP tools for workflow lifecycle operations (start, signal, query,
+  cancel, terminate), schedule management, and workflow inspection.
+  Use temporal_* CLI tools for task queue inspection, namespace administration,
+  dev server management, cluster health, and Temporal Cloud operations.
+
+mcp-servers:
+  # Connects to localhost:7233 by default (temporal server start-dev).
+  # Cloud/prod connections are configured via the temporal CLI's own
+  # env system (`temporal env`) and `barry pack auth temporal`.
+  temporal:
+    command: uvx
+    args: ["temporal-mcp-server"]
+
+  # Fallback: Node.js MCP server (no Python required)
+  # temporal-node:
+  #   command: npx
+  #   args: ["-y", "@alisaitteke/temporal-mcp"]
+
+tools:
+  entry: tools.ts
+
+# Temporal ships its own OAuth via the CLI — `barry pack auth temporal`
+# delegates to it. Credentials are cached by the temporal CLI; nothing
+# lands in the vault or profile env.
+auth:
+  command: temporal
+  args: [cloud, login]
+  check:
+    command: temporal
+    args: [cloud, whoami]
+
+dependencies:
+  - name: temporal
+    install: brew install temporal
+    reason: powers all temporalctl tools
+  - name: uvx
+    install: brew install uv
+    reason: runs the temporal MCP server
+
+traits:
+  temporal-query:
+    description: "Temporal workflow inspection and monitoring"
+    access: read
+    namespaces: [temporal, temporalctl]
+  temporal-infra:
+    description: "Temporal infrastructure — dev server, namespaces, cloud, cluster operations"
+    access: readwrite
+    namespaces: [temporalctl]
