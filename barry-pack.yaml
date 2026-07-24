@@ -10,16 +10,14 @@ instructions: |
 
 mcp-servers:
   # Connects to localhost:7233 by default (temporal server start-dev).
-  # Cloud/prod connections are configured via the temporal CLI's own
-  # env system (`temporal env`) and `barry pack auth temporal`.
+  # For Temporal Cloud, set TEMPORAL_HOST, TEMPORAL_NAMESPACE, and
+  # TEMPORAL_API_KEY in the profile env or machine env. The MCP server
+  # is a separate Python process — it does NOT read the temporal CLI's
+  # env profiles (`temporal env`). The CLI tools (temporalctl namespace)
+  # use `--env` flags and are unaffected.
   temporal:
     command: uvx
     args: ["temporal-mcp-server"]
-
-  # Fallback: Node.js MCP server (no Python required)
-  # temporal-node:
-  #   command: npx
-  #   args: ["-y", "@alisaitteke/temporal-mcp"]
 
 tools:
   entry: tools.ts
