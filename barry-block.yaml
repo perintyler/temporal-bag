@@ -22,7 +22,7 @@ mcp-servers:
 tools:
   entry: tools.ts
 
-# Temporal ships its own OAuth via the CLI — `barry pack auth temporal`
+# Temporal ships its own OAuth via the CLI — `barry block auth temporal`
 # delegates to it. Credentials are cached by the temporal CLI; nothing
 # lands in the vault or profile env.
 auth:
