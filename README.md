@@ -1,4 +1,4 @@
-# Temporal (Barry Pack)
+# Temporal (Barry bag)
 
 Temporal workflow orchestration — lifecycle management, schedules, task queues, and cloud operations.
 

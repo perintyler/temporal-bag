@@ -1,7 +1,7 @@
 <!-- tools: Bash,Read -->
-# QA: temporal pack
+# QA: temporal bag
 
-Temporal Barry pack — wraps the temporal-mcp-server (stdio via uvx), the `temporal` CLI as in-process tools, and official Temporal agent skills.
+Temporal Barry bag — wraps the temporal-mcp-server (stdio via uvx), the `temporal` CLI as in-process tools, and official Temporal agent skills.
 
 ## Requirements
 
@@ -97,10 +97,10 @@ npx tsx -e "
 ### 6. Manifest declares all required sections
 
 ```bash
-grep -q 'manifestVersion: 1' barry-pack.yaml && grep -q 'name: temporal' barry-pack.yaml && grep -q 'mcp-servers:' barry-pack.yaml && grep -q 'entry: tools.ts' barry-pack.yaml && grep -q 'traits:' barry-pack.yaml && grep -q 'dependencies:' barry-pack.yaml && grep -q 'auth:' barry-pack.yaml && echo "OK"
+grep -q 'manifestVersion: 1' bag.yaml && grep -q 'name: temporal' bag.yaml && grep -q 'mcp-servers:' bag.yaml && grep -q 'entry: tools.ts' bag.yaml && grep -q 'traits:' bag.yaml && grep -q 'dependencies:' bag.yaml && grep -q 'auth:' bag.yaml && echo "OK"
 ```
 
-**Expected:** `OK` — manifest includes auth block (CLI-delegated OAuth via `temporal cloud login`)
+**Expected:** `OK` — manifest includes auth bag (CLI-delegated OAuth via `temporal cloud login`)
 
 ### 7. Agent skills are linked
 
@@ -133,7 +133,7 @@ temporal --version
 
 ### 10. MCP server speaks MCP over stdio
 
-Spawns the pack's MCP server exactly as barry would and performs a JSON-RPC initialize handshake. Skip if `uvx` is not installed. First run may take up to 60s while uvx resolves the package.
+Spawns the bag's MCP server exactly as barry would and performs a JSON-RPC initialize handshake. Skip if `uvx` is not installed. First run may take up to 60s while uvx resolves the package.
 
 ```bash
 node -e '
@@ -153,13 +153,13 @@ setTimeout(() => { console.log("FAIL — no initialize response"); p.kill(); pro
 
 **Expected:** `OK — MCP initialize succeeded`
 
-### 11. Barry loads the pack (real loader path)
+### 11. Barry loads the bag (real loader path)
 
 ```bash
-barry pack show temporal 2>/dev/null
+barry bag show temporal 2>/dev/null
 ```
 
-**Expected:** Output includes `Pack: temporal`, the four traits, `MCP servers: temporal`, and a `Dependencies:` section with ✓ for `temporal` and `uvx` (skip if `barry` CLI unavailable)
+**Expected:** Output includes `Bag: temporal`, the four traits, `MCP servers: temporal`, and a `Dependencies:` section with ✓ for `temporal` and `uvx` (skip if `barry` CLI unavailable)
 
 ## Cleanup
 
@@ -176,4 +176,4 @@ No cleanup needed — the handshake step kills its spawned server.
 - [ ] Both official Temporal skills are symlinked
 - [ ] setup.sh --status reports 2 symlinks
 - [ ] MCP server completes a stdio initialize handshake (or SKIPPED without uvx)
-- [ ] barry pack show loads the pack with dependencies satisfied (or SKIPPED without barry)
+- [ ] barry bag show loads the bag with dependencies satisfied (or SKIPPED without barry)

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #
-# Setup script for the temporal pack.
+# Setup script for the temporal bag.
 #
 # Clones official Temporal skill repos into sibling directories and symlinks
-# each into this pack's skills/temporal/ folder.
+# each into this bag's skills/temporal/ folder.
 #
 # Re-run at any time to pull updates.
 #
@@ -13,8 +13,8 @@
 #
 set -euo pipefail
 
-PACK_DIR="$(cd "$(dirname "$0")" && pwd)"
-SKILLS_TARGET="$PACK_DIR/skills/temporal"
+BAG_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKILLS_TARGET="$BAG_DIR/skills/temporal"
 
 # repo_url | clone_dir_name | skill_name
 SKILL_REPOS=(
@@ -33,7 +33,7 @@ err()  { printf "\033[1;31merror:\033[0m %s\n" "$*" >&2; exit 1; }
 clone_or_update() {
   local repo_url="$1"
   local clone_dir="$2"
-  local target="$PACK_DIR/../$clone_dir"
+  local target="$BAG_DIR/../$clone_dir"
 
   if [[ -d "$target/.git" ]]; then
     log "Updating $clone_dir (git pull)..."
@@ -49,7 +49,7 @@ clone_or_update() {
 link_skill() {
   local clone_dir="$1"
   local skill_name="$2"
-  local source="$PACK_DIR/../$clone_dir"
+  local source="$BAG_DIR/../$clone_dir"
   local link_path="$SKILLS_TARGET/$skill_name"
 
   mkdir -p "$SKILLS_TARGET"
