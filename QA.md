@@ -159,7 +159,7 @@ setTimeout(() => { console.log("FAIL — no initialize response"); p.kill(); pro
 barry bag show temporal 2>/dev/null
 ```
 
-**Expected:** Output includes `Bag: temporal`, the four traits, `MCP servers: temporal`, and a `Dependencies:` section with ✓ for `temporal` and `uvx` (skip if `barry` CLI unavailable)
+**Expected:** Output includes `Bag: temporal`, its three traits (`temporal`, `temporal-query`, `temporal-infra` — declaring custom traits suppresses the auto `-read` variant), `MCP servers: temporal`, and a `Dependencies:` section with ✓ for `temporal` and `uvx` (skip if `barry` CLI unavailable)
 
 ## Cleanup
 
