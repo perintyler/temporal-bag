@@ -18,6 +18,26 @@ mcp-servers:
     command: uvx
     args: ["temporal-mcp-server"]
 
+
+# Native in-process tools namespace as 'temporalctl' in code (src/tools.ts).
+# Declared so namespace derivations (auto-traits, doctor, MCP boot checks)
+# know this bag provides the namespace.
+tool-metadata:
+  - { toolName: temporal_status, namespace: temporalctl, access: read }
+  - { toolName: temporal_server_start_dev, namespace: temporalctl, access: readwrite }
+  - { toolName: temporal_server_status, namespace: temporalctl, access: read }
+  - { toolName: temporal_task_queue_describe, namespace: temporalctl, access: read }
+  - { toolName: temporal_namespace_list, namespace: temporalctl, access: read }
+  - { toolName: temporal_namespace_describe, namespace: temporalctl, access: read }
+  - { toolName: temporal_cluster_health, namespace: temporalctl, access: read }
+  - { toolName: temporal_cluster_describe, namespace: temporalctl, access: read }
+  - { toolName: temporal_workflow_count, namespace: temporalctl, access: read }
+  - { toolName: temporal_env_list, namespace: temporalctl, access: read }
+  - { toolName: temporal_cloud_whoami, namespace: temporalctl, access: read }
+  - { toolName: temporal_cloud_namespace_list, namespace: temporalctl, access: read }
+  - { toolName: temporal_cloud_namespace_get, namespace: temporalctl, access: read }
+  - { toolName: temporal_cloud_account, namespace: temporalctl, access: read }
+
 tools:
   entry: tools.ts
 
