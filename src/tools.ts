@@ -1,4 +1,4 @@
-import { defineTool } from "@barry/tools";
+import { defineTool } from "@barry-rocks/tools";
 import { z } from "zod";
 import { execFile, spawn } from "node:child_process";
 import { runTemporalCli, isTemporalCliInstalled } from "./exec.js";
