@@ -97,10 +97,15 @@ npx tsx -e "
 ### 6. Manifest declares all required sections
 
 ```bash
-grep -q 'manifestVersion: 1' bag.yaml && grep -q 'name: temporal' bag.yaml && grep -q 'mcp-servers:' bag.yaml && grep -q 'entry: tools.ts' bag.yaml && grep -q 'traits:' bag.yaml && grep -q 'dependencies:' bag.yaml && grep -q 'auth:' bag.yaml && echo "OK"
+grep -q 'name: temporal' bag.yaml && grep -q 'mcp-servers:' bag.yaml && grep -q 'entry: tools.ts' bag.yaml && grep -q 'traits:' bag.yaml && grep -q 'dependencies:' bag.yaml && grep -q 'auth:' bag.yaml && echo "OK"
 ```
 
 **Expected:** `OK` — manifest includes auth bag (CLI-delegated OAuth via `temporal cloud login`)
+
+To confirm this step can still fail, delete any one of those sections from a
+copy and re-run it: no `OK`. It previously led with `manifestVersion: 1`, a key
+this manifest has never had, so the chain short-circuited and the step could
+never print `OK` — its passing and failing states were both silence.
 
 ### 7. Agent skills are linked
 
