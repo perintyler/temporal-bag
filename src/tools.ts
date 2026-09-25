@@ -1,4 +1,4 @@
-import { defineTool } from "@barry-rocks/sdk-bags";
+import { defineTool } from "@barry-rocks/sdk/bags";
 import { z } from "zod";
 import { execFile, spawn } from "node:child_process";
 import { runTemporalCli, isTemporalCliInstalled } from "./exec.js";
