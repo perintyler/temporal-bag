@@ -1,0 +1,16 @@
+[
+  {
+    "repository": "https://github.com/temporalio/skill-temporal-design.git",
+    "revision": "430c2656f4365294145cdf0fc0c443b138768142",
+    "skills": {
+      "temporal-design": "."
+    }
+  },
+  {
+    "repository": "https://github.com/temporalio/skill-temporal-developer.git",
+    "revision": "4f7b14626c56d06574564cd4d265bbcb6425a21c",
+    "skills": {
+      "temporal-developer": "."
+    }
+  }
+]
