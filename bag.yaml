@@ -39,13 +39,9 @@ dependencies:
     install:
       macos: brew install uv
 
-traits:
-  temporal-query:
-    description: "Temporal workflow inspection and monitoring"
-    access: read
-    namespaces: [ temporal, temporalctl ]
-  temporal-infra:
-    description: "Temporal infrastructure — dev server, namespaces, cloud, cluster
-      operations"
-    access: readwrite
-    namespaces: [ temporalctl ]
+bounds:
+  query-only:
+    description: "Temporal workflow inspection and monitoring only"
+    bound:
+      tools:
+        allow: [ temporal:read, temporalctl:read ]
